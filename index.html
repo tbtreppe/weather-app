@@ -2,130 +2,80 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather app</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <link rel="stylesheet" href="src/style.css" />
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <title>Weather App</title>
   </head>
   <body>
     <div class="container">
-      <div class="weather-app">
-        <h1>Discover the Weather</h1>
-        <form id="search-form">
-          <!-- <div class="mb-3"> -->
+      <div class="weather-app-wrapper">
+        <h2>Discover the Weather</h2>
+        <div class="weather-app">
+          <form id="search-form" class="mb-3">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Type a city.."
+                  class="form-control"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-100"
+                />
+              </div>
+            </div>
+          </form>
+          <div class="overview">
+            <h1 id="city"></h1>
+            <ul>
+              <li>Last updated: <span id="date"></span></li>
+              <li id="description"></li>
+            </ul>
+          </div>
           <div class="row">
             <div class="col-6">
-              <input
-                type="text"
-                id="city-input"
-                class="form-control"
-                placeholder="Search for a City"
-              />
+              <div class="clearfix weather-temperature">
+                <img src="" alt="Clear" id="icon" class="float-left" />
+                <div class="float-left">
+                  <strong id="temperature"></strong
+                  ><span class="units"
+                    ><a href="#" id="celsius-link" class="active">°C</a> |
+                    <a href="#" id="fahrenheit-link">°F</a></span
+                  >
+                </div>
+              </div>
             </div>
-            <div class="col-3">
-              <input type="submit" class="btn btn-primary" value="Search" />
-              
-            </div>
-            <div class="col-3">
-            <input type="submit" class="btn btn-success" id="getCurrent" value="Current"/>
-            </div>
-          </div>
-        </form>
-        <h3 id="city"></h3>
-        <ul>
-          <li id="date"></li>
-          <li id="desc"></li>
-        </ul>
-        <div class="row">
-          <div class="col-6">
-          <div class="clearfix">
-            <img id= "image"
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="Cloudy icon"
-              class="weather-icon float-left"
-            />
-            <div class="float-left">
-              <span class="temperature" id="temperature"></span
-              ><span class="units">
-                <a href="#" id="celsius-link">°C</a> |
-                <a href="#" id="fahrenheit-link">°F</a>
-              </span>
+            <div class="col-6">
+              <ul>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
+              </ul>
             </div>
           </div>
         </div>
-        
-        <!-- <div class="card" style="width: 18rem">
-          <ul class="list-group list-group-flush list-group-horizontal mx-auto">
-            <span class="border border-end-0"
-              ><li class="list-group-item">
-                <strong>Sunday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-            <span class="border border-end-0">
-              <li class="list-group-item">
-                <strong>Monday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-            <span class="border border-end-0">
-              <li class="list-group-item">
-                <strong>Tuesday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-            <span class="border border-end-0">
-              <li class="list-group-item">
-                <strong>Wednesday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-            <span class="border border-end-0">
-              <li class="list-group-item">
-                <strong>Thursday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-            <span class="border border-end-0">
-              <li class="list-group-item">
-                <strong>Friday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-            <span class="border">
-              <li class="list-group-item">
-                <strong>Saturday</strong>
-                <p>emoji</p>
-                <p>Partly Sunny</p>
-                <p>79º</p>
-              </li>
-            </span>
-          </ul>
-        </div> -->
+        <small>
+          <a href="www.https://github.com/tbtreppe/weather-app" target="_blank"
+            >Open-source code</a
+          >
+          by Tracey Reis
+        </small>
       </div>
     </div>
-    <a href="www.https://github.com/tbtreppe/weather-app">Open source code</a>
-    <p>by Tracey Reis</p>
-    <!-- <img src="images/sky-background.jpg" alt="sky" /> -->
     <script src="src/app.js"></script>
   </body>
 </html>
